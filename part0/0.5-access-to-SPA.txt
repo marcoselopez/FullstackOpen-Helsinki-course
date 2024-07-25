@@ -1,0 +1,21 @@
+sequenceDiagram
+
+participant browser
+participant server
+
+title Excercise 0.5 - SPA Access
+
+browser->>server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+server-->>browser: spa page HTML file
+browser->>server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->>browser: main.css file
+browser->>server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+server-->>browser: spa.js file
+
+note over browser: spa.js file executes and requests data.json file
+
+browser->>server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->>browser: data.json file that contains array of notes
+
+note over browser: the event handler function renders the notes
+note over browser: onsubmit handler function is added to the form

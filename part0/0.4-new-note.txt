@@ -1,0 +1,28 @@
+sequenceDiagram
+
+participant browser
+participant server
+
+title Excercise 0.4 - New Note trigger
+
+note over browser: User enters text on input and clicks "Save"
+note over browser: Browser sends an http POST request to server
+
+browser->>server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+
+note over server: Server receives request, creates object using the body of the request, adds the new object to notes and sends a response to the browser
+
+server-->>browser: HTTP Status 302, URL Redirects to /exampleapp/notes
+browser->>server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->>browser: Notes page HTML file
+browser->>server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->>browser: main.css file
+browser->>server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->>browser: main.js file
+
+note over browser: main.js file executes and requests data.json file
+
+browser->>server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->>browser: data.json file that contains array of notes
+
+note over browser: data inside data.json is rendered through an event handler

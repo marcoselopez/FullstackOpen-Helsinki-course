@@ -1,0 +1,16 @@
+sequenceDiagram
+
+participant browser
+participant server
+
+title Excercise 0.6 New Note on SPA
+
+note over browser: User enters text on submit and clicks "Save"
+note over browser: onsubmit handler is triggered
+note over browser: note data is pushed to array and sent to server through a json object
+
+browser->>server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over server: Server receives data, process it and responds to browser
+
+server-->>browser: JSON {"message":"note created"}
